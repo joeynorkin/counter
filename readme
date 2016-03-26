@@ -38,7 +38,7 @@ FUNCTIONS
 
         decr_hr, decr_min, decr_sec all decrement the variables of the struct count
         variable by any integer x. If x < 0, then these decrementing functions will
-        decrement by x's negative value, or in other words, will decrement the
+        decrement by x's negative value, or in other words, will increment the
         values by -x. So decrementing by -number can be viewed as incrementing by
         number.
 
