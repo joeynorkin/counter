@@ -4,6 +4,14 @@ DESCRIPTION
         This is a counter library that provides an accumulator which can be
         incremented/decremented upon command.
 
+        Accumulator is formatted like a clock. There are units called "hour",
+        "minute" and "second", all relating as one can expect for a clock. For
+        example, when "second" reaches 60, it cycles back to 0 while "minute"
+        increments and so on. The library is easily configurable. 60, 60, and
+        24 are the default values where "second", "minute", and "hour" cycle
+        back to 0, respectively. These values are subject to change by the wish
+        of the user.
+
         To use the counter library, run the makefile in the counter directory
         (which is the default directory when pulling or downloading from the
         github repository). This will compile the library file (as well as the
