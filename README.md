@@ -11,7 +11,7 @@ The library is configurable. 60, 60, and 24 are the default values where "second
 "minute", and "hour" cycle back to 0, respectively. These values can be changed
 by the wish of the programmer.
 
-###To use the counter library:
+### To use the counter library
 Run the makefile in the counter directory (which is the default directory when
 pulling or downloading from the github repository). This will compile the library
 file (as well as the object files and an executable, *test*, which performs unit
