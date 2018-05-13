@@ -36,25 +36,25 @@ functions. This can be done as such
 For more details, refer to the function declarations in the header file.
 
 ### count_init
-    initializes the variables of the struct count variable.
+> initializes the variables of the struct count variable.
 
 ### incr_hr, incr_min, incr_sec
-    all increment the variables of the struct count variable by any integer x. \
-    If x < 0, then these incrementing functions will increment by x's negative \
-    value, or in other words, will decrement the values by -x. So incrementing \
-    by -number can be viewed as decrementing by number.
+> all increment the variables of the struct count variable by any integer x.
+> If x < 0, then these incrementing functions will increment by x's negative
+> value, or in other words, will decrement the values by -x. So incrementing
+> by -number can be viewed as decrementing by number.
 
 
 ### decr_hr, decr_min, decr_sec
-    all decrement the variables of the struct count variable by any integer x. \
-    If x < 0, then these decrementing functions will decrement by x's negative \
-    value, or in other words, will increment the values by -x. So decrementing \
-    by -number can be viewed as incrementing by number.
+> all decrement the variables of the struct count variable by any integer x.
+> If x < 0, then these decrementing functions will decrement by x's negative
+> value, or in other words, will increment the values by -x. So decrementing
+> by -number can be viewed as incrementing by number.
 
 ### display_std, display_mil
-    display the contents of the struct count variable, formatted like a clock. \
-    display_std corresponds to the standard time format and display_mil \
-    corresponds to military time format.
+> display the contents of the struct count variable, formatted like a clock.
+> display_std corresponds to the standard time format and display_mil
+> corresponds to military time format.
 
 
 
@@ -63,22 +63,21 @@ Each function of the library are in their own separate c file, with the exact na
 as the function with an exception for the display functions, which are both in display.c
 
 ### counter.h
-    Header file, declares the struct count variable and library functions.
+> Header file, declares the struct count variable and library functions.
 
 ### test.c
-    Implements unit tests of the counter library.
+> Implements unit tests of the counter library.
 
 ### libcounter.a
-    Static library file of the counter library.
+> Static library file of the counter library.
 
 ### makefile
-    Compiles libcounter.a and the object files of the library functions. Compiles \
-    executable, test, a program which runs unit tests.
+> Compiles libcounter.a and the object files of the library functions. Compiles
+> executable, test, a program which runs unit tests.
 
 
 ## Compiler
 Apple LLVM version 7.0.2 (clang-700.1.81)
-
 
 
 ## AUTHOR
