@@ -11,14 +11,17 @@ The library is configurable. 60, 60, and 24 are the default values where "second
 "minute", and "hour" cycle back to 0, respectively. These values can be changed
 by the wish of the programmer.
 
-To use the counter library:
-* run the makefile in the counter directory (which is the default directory when
+###To use the counter library:
+Run the makefile in the counter directory (which is the default directory when
 pulling or downloading from the github repository). This will compile the library
 file (as well as the object files and an executable, *test*, which performs unit
 tests to ensure correct functionality of the library).
-* Include the header file *counter.h* in the program using the library and when
-compiling, include the segment: **-L. -lcounter**
-⋅⋅⋅For simplicity, this assumes both the header and library files are in your
+Include the header file *counter.h* in the program using the library and when
+compiling, include the segment:
+
+    -L. -lcounter
+
+For simplicity, this assumes both the header and library files are in your
 current directory.
 
 Make sure you declare and initialize a struct count variable to use the
