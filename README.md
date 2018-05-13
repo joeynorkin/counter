@@ -17,12 +17,9 @@ pulling or downloading from the github repository). This will compile the librar
 file (as well as the object files and an executable, *test*, which performs unit
 tests to ensure correct functionality of the library).
 * Include the header file *counter.h* in the program using the library and when
-compiling, include the segment:
-
-    -L. -lcounter
-
-For simplicity, this assumes both the header and library files are in
-your current directory.
+compiling, include the segment: **-L. -lcounter**
+⋅⋅⋅For simplicity, this assumes both the header and library files are in your
+current directory.
 
 Make sure you declare and initialize a struct count variable to use the
 functions. This can be done as such
