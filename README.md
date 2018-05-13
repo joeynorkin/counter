@@ -39,21 +39,21 @@ For more details, refer to the function declarations in the header file.
     initializes the variables of the struct count variable.
 
 ### incr_hr, incr_min, incr_sec
-    all increment the variables of the struct count variable by any integer x.
-    If x < 0, then these incrementing functions will increment by x's negative
-    value, or in other words, will decrement the values by -x. So incrementing
+    all increment the variables of the struct count variable by any integer x. \
+    If x < 0, then these incrementing functions will increment by x's negative \
+    value, or in other words, will decrement the values by -x. So incrementing \
     by -number can be viewed as decrementing by number.
 
 
 ### decr_hr, decr_min, decr_sec
-    all decrement the variables of the struct count variable by any integer x.
-    If x < 0, then these decrementing functions will decrement by x's negative
-    value, or in other words, will increment the values by -x. So decrementing
+    all decrement the variables of the struct count variable by any integer x. \
+    If x < 0, then these decrementing functions will decrement by x's negative \
+    value, or in other words, will increment the values by -x. So decrementing \
     by -number can be viewed as incrementing by number.
 
 ### display_std, display_mil
-    display the contents of the struct count variable, formatted like a clock.
-    display_std corresponds to the standard time format and display_mil
+    display the contents of the struct count variable, formatted like a clock. \
+    display_std corresponds to the standard time format and display_mil \
     corresponds to military time format.
 
 
@@ -72,7 +72,7 @@ as the function with an exception for the display functions, which are both in d
     Static library file of the counter library.
 
 ### makefile
-    Compiles libcounter.a and the object files of the library functions. Compiles
+    Compiles libcounter.a and the object files of the library functions. Compiles \
     executable, test, a program which runs unit tests.
 
 
