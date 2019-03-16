@@ -16,6 +16,7 @@ test: test/unit_tests.c libcounter.a
 libcounter.a: count_init.o decr_hr.o decr_min.o decr_sec.o \
 				incr_hr.o incr_min.o incr_sec.o display.o
 	$(AR) rcs $@ $^
+	$(RM) $^
 
 %.o: %.c counter.h
 	$(CC) $< -c
