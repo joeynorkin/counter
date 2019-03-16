@@ -11,6 +11,7 @@ numbers.
 
 
 #include "../src/counter.h"
+#include <stdio.h>
 #include <assert.h>
 
 int main() {

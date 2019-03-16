@@ -6,6 +6,7 @@ Written by Joey Norkin, March 2016
 
 
 #include "counter.h"
+#include <stdio.h>
 
 /*
 Displays counter content. Formatted as standard time.

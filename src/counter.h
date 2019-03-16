@@ -5,8 +5,6 @@ This is a header file for the counter library
 #ifndef COUNTER_H_
 #define COUNTER_H_
 
-#include <stdio.h>          /* for output */
-
 #define MOD_HR      24      /* overlap value for hr */
 #define MOD_MIN     60      /* overlap value for min */
 #define MOD_SEC     60      /* overlap value for sec */
@@ -53,7 +51,7 @@ Increments cp->hr by hour. Its value will cycle back to 0 for each time it
 reaches the value MOD_HR.
 
 If hour < 0, then cp->hr is decremented by -hour.
- 
+
 parameters:
     hour   (int)  the value of hours to be incremented
 */
@@ -86,7 +84,7 @@ void incr_sec(struct count *cp, int second);
 
 /*
 Decrements cp->hr by hour. Its value will cycle up to MOD_HR-1 for each time it
-surpasses the value 0. 
+surpasses the value 0.
 
 If hour < 0, then cp->hr is incremented by -hour.
 
