@@ -23,7 +23,7 @@ void count_init(struct count *cp, int hour, int minute, int second) {
     cp->min = 0;
     cp->sec = 0;
 
-    incr_hr(cp, hour);
-    incr_min(cp, minute);
-    incr_sec(cp, second);
+    if (hour != 0) incr_hr(cp, hour);
+    if (minute != 0) incr_min(cp, minute);
+    if (second != 0) incr_sec(cp, second);
 }
