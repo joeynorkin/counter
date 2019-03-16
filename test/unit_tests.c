@@ -10,7 +10,7 @@ numbers.
 */
 
 
-#include "counter.h"
+#include "../src/counter.h"
 #include <assert.h>
 
 int main() {
@@ -174,7 +174,7 @@ Begin Hour decrement test
 End Hour decrement test
 */
 
-    
+
     count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
 
 
@@ -434,7 +434,7 @@ Begin second increment test
     assert(22 == counter.hr);
     assert(59 == counter.min);
     assert(26 == counter.sec);
-    
+
 
 /*
 End second increment test
