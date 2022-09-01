@@ -14,12 +14,15 @@ numbers.
 #include <stdio.h>
 #include <assert.h>
 
+void assertCounterFields(Counter *cp, int expected_hr, int expected_min, int expected_sec) {
+    assert(cp->hr == expected_hr);
+    assert(cp->min == expected_min);
+    assert(cp->sec == expected_sec);
+}
+
 int main() {
-    struct count counter;
-    count_init(&counter, 0, 0, 0);
-
+    Counter *cp = counter_create();
     printf("\nBegin unit tests.\n\n");
-
 
 
 /*
@@ -29,76 +32,53 @@ Begin Hour increment tests
     /*
     incrementing non-negative integers
     */
-    incr_hr(&counter, 0);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, 0);
+    assertCounterFields(cp, 0, 0, 0);
 
-    incr_hr(&counter, MOD_HR);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, MOD_HR);
+    assertCounterFields(cp, 0, 0, 0);
 
-    incr_hr(&counter, 1);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, 1);
+    assertCounterFields(cp, 1, 0, 0);
 
-    incr_hr(&counter, 2);
-    assert(3 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, 2);
+    assertCounterFields(cp, 3, 0, 0);
 
-    incr_hr(&counter, 20);
-    assert(23 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, 20);
+    assertCounterFields(cp, 23, 0, 0);
 
-    incr_hr(&counter, 150);
-    assert(5 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, 150);
+    assertCounterFields(cp, 5, 0, 0);
 
 
-
-    count_init(&counter, 0, 0, 0); /* back to all zeros for more testing */
+    reset(cp); /* back to all zeros for more testing */
 
 
     /*
     incrementing negative integers
     */
 
-    incr_hr(&counter, -MOD_HR);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, -MOD_HR);
+    assertCounterFields(cp, 0, 0, 0);
 
-    incr_hr(&counter, -1);
-    assert(23 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, -1);
+    assertCounterFields(cp, 23, 0, 0);
 
-    incr_hr(&counter, -2);
-    assert(21 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, -2);
+    assertCounterFields(cp, 21, 0, 0);
 
-    incr_hr(&counter, -20);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, -20);
+    assertCounterFields(cp, 1, 0, 0);
 
-    incr_hr(&counter, -150);
-    assert(19 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_hr(cp, -150);
+    assertCounterFields(cp, 19, 0, 0);
 
 /*
 End Hour increment test
  */
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
 /*
@@ -108,75 +88,53 @@ Begin Hour decrement test
     /*
     decrementing non-negative integers
     */
-    decr_hr(&counter, 0);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, 0);
+    assertCounterFields(cp, 0, 0, 0);
 
-    decr_hr(&counter, MOD_HR);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, MOD_HR);
+    assertCounterFields(cp, 0, 0, 0);
 
-    decr_hr(&counter, 1);
-    assert(23 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, 1);
+    assertCounterFields(cp, 23, 0, 0);
 
-    decr_hr(&counter, 2);
-    assert(21 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, 2);
+    assertCounterFields(cp, 21, 0, 0);
 
-    decr_hr(&counter, 20);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, 20);
+    assertCounterFields(cp, 1, 0, 0);
 
-    decr_hr(&counter, 150);
-    assert(19 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, 150);
+    assertCounterFields(cp, 19, 0, 0);
 
 
 
-    count_init(&counter, 0, 0, 0); /* back to all zeros for more testing */
+    reset(cp); /* back to all zeros for more testing */
 
 
     /*
     decrementing negative integers
     */
-    decr_hr(&counter, -MOD_HR);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, -MOD_HR);
+    assertCounterFields(cp, 0, 0, 0);
 
-    decr_hr(&counter, -1);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, -1);
+    assertCounterFields(cp, 1, 0, 0);
 
-    decr_hr(&counter, -2);
-    assert(3 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, -2);
+    assertCounterFields(cp, 3, 0, 0);
 
-    decr_hr(&counter, -20);
-    assert(23 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, -20);
+    assertCounterFields(cp, 23, 0, 0);
 
-    decr_hr(&counter, -150);
-    assert(5 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_hr(cp, -150);
+    assertCounterFields(cp, 5, 0, 0);
 
 /*
 End Hour decrement test
 */
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
 /*
@@ -186,85 +144,59 @@ Begin minute increment test
     /*
     incrementing non-negative integers
     */
-    incr_min(&counter, 0);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, 0);
+    assertCounterFields(cp, 0, 0, 0);
 
-    incr_min(&counter, MOD_MIN);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, MOD_MIN);
+    assertCounterFields(cp, 1, 0, 0);
 
-    incr_min(&counter, 1);
-    assert(1 == counter.hr);
-    assert(1 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, 1);
+    assertCounterFields(cp, 1, 1, 0);
 
-    incr_min(&counter, 2);
-    assert(1 == counter.hr);
-    assert(3 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, 2);
+    assertCounterFields(cp, 1, 3, 0);
 
-    incr_min(&counter, 50);
-    assert(1 == counter.hr);
-    assert(53 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, 50);
+    assertCounterFields(cp, 1, 53, 0);
 
-    incr_min(&counter, 100);
-    assert(3 == counter.hr);
-    assert(33 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, 100);
+    assertCounterFields(cp, 3, 33, 0);
 
-    incr_min(&counter, 1273);
-    assert(0 == counter.hr);
-    assert(46 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, 1273);
+    assertCounterFields(cp, 0, 46, 0);
 
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
     /*
     incrementing negative integers
     */
-    incr_min(&counter, -MOD_MIN);
-    assert(23 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, -MOD_MIN);
+    assertCounterFields(cp, 23, 0, 0);
 
-    incr_min(&counter, -1);
-    assert(22 == counter.hr);
-    assert(59 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, -1);
+    assertCounterFields(cp, 22, 59, 0);
 
-    incr_min(&counter, -2);
-    assert(22 == counter.hr);
-    assert(57== counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, -2);
+    assertCounterFields(cp, 22, 57, 0);
 
-    incr_min(&counter, -50);
-    assert(22 == counter.hr);
-    assert(7 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, -50);
+    assertCounterFields(cp, 22, 7, 0);
 
-    incr_min(&counter, -100);
-    assert(20 == counter.hr);
-    assert(27 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, -100);
+    assertCounterFields(cp, 20, 27, 0);
 
-    incr_min(&counter, -1273);
-    assert(23 == counter.hr);
-    assert(14 == counter.min);
-    assert(0 == counter.sec);
+    incr_min(cp, -1273);
+    assertCounterFields(cp, 23, 14, 0);
 
 /*
 End minute increment test
 */
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
 /*
@@ -274,78 +206,52 @@ Begin minute decrement test
     /*
     decrementing non-negative integers
     */
-    decr_min(&counter, 0);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, 0);
+    assertCounterFields(cp, 0, 0, 0);
 
-    decr_min(&counter, MOD_MIN);
-    assert(23 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, MOD_MIN);
+    assertCounterFields(cp, 23, 0, 0);
 
-    decr_min(&counter, 1);
-    assert(22 == counter.hr);
-    assert(59 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, 1);
+    assertCounterFields(cp, 22, 59, 0);
 
-    decr_min(&counter, 2);
-    assert(22 == counter.hr);
-    assert(57 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, 2);
+    assertCounterFields(cp, 22, 57, 0);
 
-    decr_min(&counter, 50);
-    assert(22 == counter.hr);
-    assert(7 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, 50);
+    assertCounterFields(cp, 22, 7, 0);
 
-    decr_min(&counter, 100);
-    assert(20 == counter.hr);
-    assert(27 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, 100);
+    assertCounterFields(cp, 20, 27, 0);
 
-    decr_min(&counter, 1273);
-    assert(23 == counter.hr);
-    assert(14 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, 1273);
+    assertCounterFields(cp, 23, 14, 0);
 
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
     /*
     decrementing negative integers
     */
-    decr_min(&counter, -MOD_MIN);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, -MOD_MIN);
+    assertCounterFields(cp, 1, 0, 0);
 
-    decr_min(&counter, -1);
-    assert(1 == counter.hr);
-    assert(1 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, -1);
+    assertCounterFields(cp, 1, 1, 0);
 
-    decr_min(&counter, -2);
-    assert(1 == counter.hr);
-    assert(3 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, -2);
+    assertCounterFields(cp, 1, 3, 0);
 
-    decr_min(&counter, -50);
-    assert(1 == counter.hr);
-    assert(53 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, -50);
+    assertCounterFields(cp, 1, 53, 0);
 
-    decr_min(&counter, -100);
-    assert(3 == counter.hr);
-    assert(33 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, -100);
+    assertCounterFields(cp, 3, 33, 0);
 
-    decr_min(&counter, -1273);
-    assert(0 == counter.hr);
-    assert(46 == counter.min);
-    assert(0 == counter.sec);
+    decr_min(cp, -1273);
+    assertCounterFields(cp, 0, 46, 0);
 
 
 /*
@@ -353,7 +259,7 @@ End Minute decrement test
 */
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
 /*
@@ -363,78 +269,52 @@ Begin second increment test
     /*
     incrementing non-negative integers
     */
-    incr_sec(&counter, 0);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    incr_sec(cp, 0);
+    assertCounterFields(cp, 0, 0, 0);
 
-    incr_sec(&counter, MOD_SEC);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(0 == counter.sec);
+    incr_sec(cp, MOD_SEC);
+    assertCounterFields(cp, 0, 1, 0);
 
-    incr_sec(&counter, 1);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(1 == counter.sec);
+    incr_sec(cp, 1);
+    assertCounterFields(cp, 0, 1, 1);
 
-    incr_sec(&counter, 2);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(3 == counter.sec);
+    incr_sec(cp, 2);
+    assertCounterFields(cp, 0, 1, 3);
 
-    incr_sec(&counter, 50);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(53 == counter.sec);
+    incr_sec(cp, 50);
+    assertCounterFields(cp, 0, 1, 53);
 
-    incr_sec(&counter, 100);
-    assert(0 == counter.hr);
-    assert(3 == counter.min);
-    assert(33 == counter.sec);
+    incr_sec(cp, 100);
+    assertCounterFields(cp, 0, 3, 33);
 
-    incr_sec(&counter, 3421);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(34 == counter.sec);
+    incr_sec(cp, 3421);
+    assertCounterFields(cp, 1, 0, 34);
 
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
     /*
     incrementing negative integers
     */
-    incr_sec(&counter, -MOD_SEC);
-    assert(23 == counter.hr);
-    assert(59 == counter.min);
-    assert(0 == counter.sec);
+    incr_sec(cp, -MOD_SEC);
+    assertCounterFields(cp, 23, 59, 0);
 
-    incr_sec(&counter, -1);
-    assert(23 == counter.hr);
-    assert(58 == counter.min);
-    assert(59 == counter.sec);
+    incr_sec(cp, -1);
+    assertCounterFields(cp, 23, 58, 59);
 
-    incr_sec(&counter, -2);
-    assert(23 == counter.hr);
-    assert(58 == counter.min);
-    assert(57 == counter.sec);
+    incr_sec(cp, -2);
+    assertCounterFields(cp, 23, 58, 57);
 
-    incr_sec(&counter, -50);
-    assert(23 == counter.hr);
-    assert(58 == counter.min);
-    assert(7 == counter.sec);
+    incr_sec(cp, -50);
+    assertCounterFields(cp, 23, 58, 7);
 
-    incr_sec(&counter, -100);
-    assert(23 == counter.hr);
-    assert(56 == counter.min);
-    assert(27 == counter.sec);
+    incr_sec(cp, -100);
+    assertCounterFields(cp, 23, 56, 27);
 
-    incr_sec(&counter, -3421);
-    assert(22 == counter.hr);
-    assert(59 == counter.min);
-    assert(26 == counter.sec);
+    incr_sec(cp, -3421);
+    assertCounterFields(cp, 22, 59, 26);
 
 
 /*
@@ -442,7 +322,7 @@ End second increment test
 */
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
 /*
@@ -452,78 +332,54 @@ Begin second decrement test
     /*
     decrementing non-negative integers
     */
-    decr_sec(&counter, 0);
-    assert(0 == counter.hr);
-    assert(0 == counter.min);
-    assert(0 == counter.sec);
+    decr_sec(cp, 0);
+    assertCounterFields(cp, 0, 0, 0);
 
-    decr_sec(&counter, MOD_SEC);
-    assert(23 == counter.hr);
-    assert(59 == counter.min);
-    assert(0 == counter.sec);
+    decr_sec(cp, MOD_SEC);
+    assertCounterFields(cp, 23, 59, 0);
 
-    decr_sec(&counter, 1);
-    assert(23 == counter.hr);
-    assert(58 == counter.min);
-    assert(59 == counter.sec);
+    decr_sec(cp, 1);
+    assertCounterFields(cp, 23, 58, 59);
 
-    decr_sec(&counter, 2);
-    assert(23 == counter.hr);
-    assert(58 == counter.min);
-    assert(57 == counter.sec);
+    decr_sec(cp, 2);
+    assertCounterFields(cp, 23, 58, 57);
 
-    decr_sec(&counter, 50);
-    assert(23 == counter.hr);
-    assert(58 == counter.min);
-    assert(7 == counter.sec);
+    decr_sec(cp, 50);
+    assertCounterFields(cp, 23, 58, 7);
 
-    decr_sec(&counter, 100);
-    assert(23 == counter.hr);
-    assert(56 == counter.min);
-    assert(27 == counter.sec);
+    decr_sec(cp, 100);
+    assertCounterFields(cp, 23, 56, 27);
 
-    decr_sec(&counter, 3421);
-    assert(22 == counter.hr);
-    assert(59 == counter.min);
-    assert(26 == counter.sec);
+    decr_sec(cp, 3421);
+    assertCounterFields(cp, 22, 59, 26);
 
 
 
-    count_init(&counter, 0, 0, 0);  /* back to all zeros for more testing */
+    reset(cp);  /* back to all zeros for more testing */
 
 
     /*
     decrementing negative integers
     */
-    decr_sec(&counter, -MOD_SEC);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(0 == counter.sec);
+    decr_sec(cp, -MOD_SEC);
+    assertCounterFields(cp, 0, 1, 0);
 
-    decr_sec(&counter, -1);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(1 == counter.sec);
+    decr_sec(cp, -1);
+    assertCounterFields(cp, 0, 1, 1);
 
-    decr_sec(&counter, -2);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(3 == counter.sec);
+    decr_sec(cp, -2);
+    assertCounterFields(cp, 0, 1, 3);
 
-    decr_sec(&counter, -50);
-    assert(0 == counter.hr);
-    assert(1 == counter.min);
-    assert(53 == counter.sec);
+    decr_sec(cp, -50);
+    assertCounterFields(cp, 0, 1, 53);
 
-    decr_sec(&counter, -100);
-    assert(0 == counter.hr);
-    assert(3 == counter.min);
-    assert(33 == counter.sec);
+    decr_sec(cp, -100);
+    assertCounterFields(cp, 0, 3, 33);
 
-    decr_sec(&counter, -3421);
-    assert(1 == counter.hr);
-    assert(0 == counter.min);
-    assert(34 == counter.sec);
+    decr_sec(cp, -3421);
+    assertCounterFields(cp, 1, 0, 34);
+
+    counter_dest(cp);
 
 /*
 End second decrement test

@@ -18,11 +18,11 @@ This is a structure used in counter library functions.
 Variables hr, min, and sec correspond to the usual rules which regulate hour,
 minutes and seconds of a clock.
 */
-struct count {
+typedef struct {
     int hr;
     int min;
     int sec;
-};
+} Counter;
 
 
 
@@ -43,7 +43,11 @@ Function will accept any int value for hour, minute, and second, but will deal
 with the *usual* rules of over/underlapping (the rules followed by the
 incrementing/decrementing functions).
 */
-void count_init(struct count *cp, int hour, int minute, int second);
+void count_init(Counter *cp);
+Counter* counter_create();
+void counter_dest(Counter *cp);
+
+void reset(Counter *cp);
 
 
 /*
@@ -55,7 +59,7 @@ If hour < 0, then cp->hr is decremented by -hour.
 parameters:
     hour   (int)  the value of hours to be incremented
 */
-void incr_hr(struct count *cp, int hour);
+void incr_hr(Counter *cp, int hour);
 
 
 /*
@@ -67,7 +71,7 @@ If minute < 0, the cp->min is decremented by -minute.
 parameters:
     minute   (int)  the value of minutes to be incremented
 */
-void incr_min(struct count *cp, int minute);
+void incr_min(Counter *cp, int minute);
 
 
 /*
@@ -79,7 +83,7 @@ If second < 0, the cp->sec is decremented by -second.
 parameters:
     second   (int)  the value of seconds to be incremented
 */
-void incr_sec(struct count *cp, int second);
+void incr_sec(Counter *cp, int second);
 
 
 /*
@@ -91,7 +95,7 @@ If hour < 0, then cp->hr is incremented by -hour.
 parameters:
     hour   (int)  the value of hours to be decremented
 */
-void decr_hr(struct count *cp, int hour);
+void decr_hr(Counter *cp, int hour);
 
 
 /*
@@ -103,7 +107,7 @@ If minute < 0, the cp->min is incremented by -minute.
 parameters:
     minute   (int)  the value of minutes to be decremented
 */
-void decr_min(struct count *cp, int minute);
+void decr_min(Counter *cp, int minute);
 
 
 /*
@@ -115,18 +119,18 @@ If second < 0, the cp->sec is incremented by -second.
 parameters:
     second   (int)  the value of seconds to be decremented
 */
-void decr_sec(struct count *cp, int second);
+void decr_sec(Counter *cp, int second);
 
 
 /*
 Displays counter content. Formatted as standard time.
 */
-void display_std(struct count counter);
+void display_std(Counter *cp);
 
 
 /*
 Displays counter content. Formatted as military time.
 */
-void display_mil(struct count counter);
+void display_mil(Counter *cp);
 
 #endif

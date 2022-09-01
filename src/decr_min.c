@@ -1,20 +1,6 @@
-/*
-Filename: decr_min.c
-*/
-
-
 #include "counter.h"
 
-/*
-Decrements cp->min by minute. Its value will cycle up to MOD_MIN-1 for each
-time it surpasses the value 0, updating cp->hr appropriately.
-
-If minute < 0, the cp->min is incremented by -minute.
-
-parameters:
-    minute   (int)  the value of minutes to be decremented
-*/
-void decr_min(struct count *cp, int minute) {
+void decr_min(Counter *cp, int minute) {
     int hour_dec;   /* hours to decrement */
 
     if (minute > 0) {
@@ -26,7 +12,7 @@ void decr_min(struct count *cp, int minute) {
             We are dealing with the special case when decrementing minutes
             results in cp->min = 0, to prevent decrementing an extra hour.
             */
-            hour_dec = (-minute % MOD_MIN == 0) ? 
+            hour_dec = (-minute % MOD_MIN == 0) ?
                 (-minute / MOD_MIN) : (-minute / MOD_MIN) + 1;
 
             minute = -minute % MOD_MIN; /* number of minutes to subtract after underlap */

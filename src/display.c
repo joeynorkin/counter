@@ -1,29 +1,23 @@
-/*
-Filename: display.c
-
-Written by Joey Norkin, March 2016
-*/
-
-
 #include "counter.h"
 #include <stdio.h>
 
 /*
-Displays counter content. Formatted as standard time.
-*/
-void display_std(struct count counter) {
+ * Print counter in standard time format.
+ */
+void display_std(Counter *cp) {
     int hour;
+    char *postfix = ( (hour = cp->hr) < 12 ) ? "AM" : "PM";
 
-    if (( hour = counter.hr % MOD_HR_STD ) == 0)
-        hour = 12;
+    hour %= MOD_HR_STD;
 
-    printf("counter:  %d:%d:%d\n", hour, counter.min, counter.sec);
+    if (hour == 0) hour = 12;
+
+    printf("counter:  %d:%d:%d %s\n", hour, cp->min, cp->sec, postfix);
 }
 
-
 /*
-Displays counter content. Formatted as military time.
-*/
-void display_mil(struct count counter) {
-    printf("counter:  %d:%d:%d\n", counter.hr, counter.min, counter.sec);
+ * Print counter in military time format.
+ */
+void display_mil(Counter *cp) {
+    printf("counter:  %d:%d:%d\n", cp->hr, cp->min, cp->sec);
 }
